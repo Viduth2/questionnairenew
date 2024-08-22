@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"  >
+<h2>European values And Culture Summer semester-2024 Assignment 6</h2>
+    <title>Job Satisfaction Survey</title>
+
+    <style>
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fffdd0;
+            text-align: left;
+            image-align: right; 
+        }
+        h1 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            image-align: center;
+        }
+        input[type="number"], select, input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+           
+        }
+        input[type="submit"] {
+            margin-top: 20px;
+            padding: 10px 20px;
+            
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        #results {
+            display: none; /* Hide results by default */
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+}
+            
+.center-image {
+            display: block;
+            margin: 20px auto; /* Center the image horizontally */
+            max-width: 100%; /* Ensure the image does not overflow the container */
+            height: auto; /* Maintain the aspect ratio */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Job Satisfaction Survey</h1>
+
+
+<img src="https://uprytr.com/wp-content/uploads/2022/04/Improve-Employee-Satisfaction.jpg" alt "Image" height="300" width="450" "Image" class="center-image">
+        <form id="surveyForm" onsubmit="return calculateSatisfaction()">
+            <label for="work_environment">Work Environment (1-10):</label>
+            <input type="number" id="work_environment" name="work_environment" min="1" max="10" required>
+
+            <label for="salary">Salary (1-10):</label>
+            <input type="number" id="salary" name="salary" min="1" max="10" required>
+
+            <label for="growth_opportunities">Growth Opportunities (1-10):</label>
+            <input type="number" id="growth_opportunities" name="growth_opportunities" min="1" max="10" required>
+
+            <label for="work_life_balance">Work-Life Balance (1-10):</label>
+            <input type="number" id="work_life_balance" name="work_life_balance" min="1" max="10" required>
+
+            <label for="management">Management (1-10):</label>
+            <input type="number" id="management" name="management" min="1" max="10" required>
+
+            <label for="Supervisor_Support">Supervisor Support (1-10):</label>
+            <input type="number" id="Supervisor_Support" name="Supervisor_Support" min="1" max="10" required>
+             
+            <label for="Satisfaction_with_vacation_days">Satisfaction with vacation days (1-10):</label>
+            <input type="number" id="Satisfaction_with_vacation_days" name="Satisfaction_with_vacation_days" min="1" max="10" required>
+
+            <label for="Work_load_distribution">Work load distribution(1-10):</label>
+            <input type="number" id="Work_load_distribution" name="Work_load_distribution" min="1" max="10" required>
+ 
+            <label for="Pension_scheme">Pension scheme (1-10):</label>
+            <input type="number" id="Pension_scheme" name="Pension_scheme" min="1" max="10" required>
+
+            <label for=" Working_time_management">Working time management (1-10):</label>
+            <input type="number" id="Working_time_management" name="Working_time_management" min="1" max="10" required>
+
+
+
+
+          
+
+
+            <input type="submit" value="Calculate Satisfaction">
+        </form>
+
+        <div id="results">
+            <!-- Results will be displayed here dynamically -->
+        </div>
+    </div>
+
+    <script>
+        function calculateSatisfaction() {
+            // Prevent form submission
+            event.preventDefault();
+
+            // Get form values
+            var workEnvironment = parseInt(document.getElementById('work_environment').value);
+            var salary = parseInt(document.getElementById('salary').value);
+            var growthOpportunities = parseInt(document.getElementById('growth_opportunities').value);
+            var workLifeBalance = parseInt(document.getElementById('work_life_balance').value);
+            
+
+            var management = parseInt(document.getElementById('management').value);
+            var SupervisorSupport = parseInt(document.getElementById('Supervisor_Support').value);
+            var Satisfactionwithvacationdays = parseInt(document.getElementById('Satisfaction_with_vacation_days').value);
+            var Workloaddistribution = parseInt(document.getElementById('Work_load_distribution').value);
+            var Pensionscheme = parseInt(document.getElementById('Pension_scheme').value);
+            var  Workingtimemanagement = parseInt(document.getElementById('Working_time_management').value);
+
+
+            // Calculate overall satisfaction score
+            var overallSatisfaction = (workEnvironment + salary + growthOpportunities + workLifeBalance+ SupervisorSupport + management + Satisfactionwithvacationdays+Workloaddistribution +Pensionscheme + Workingtimemanagement) / 10;
+
+            // Round to two decimal places
+            overallSatisfaction = overallSatisfaction.toFixed(2);
+
+            // Determine the message based on the overall satisfaction score
+            var message = "";
+            if (overallSatisfaction >= 8.5) {
+                message = "You are completely satisfied with your job! 🎉";
+            } else if (overallSatisfaction >= 7) {
+                message = "You are satisfied! 😊";
+            } else if (overallSatisfaction >= 6) {
+                message = "You are compromising! 😐";
+            } else {
+                message = "You are not satisfied. 😕";
+            }
+
+            // Display results
+            var resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <h2>Job Satisfaction Score</h2>
+                <p><strong>Overall Score:</strong> ${overallSatisfaction}</p>
+                <p>${message}</p>
+                <p>Based on the ratings provided.</p>
+<p><b>European Values Assignment 6</b></p>
+            `;
+
+           
+                
+                
+            
+            
+            // Display results div
+            resultsDiv.style.display = 'block';
+
+            return false; // To prevent default form submission
+        }
+    </script>
+</body>
+</html>
